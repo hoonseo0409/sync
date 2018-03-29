@@ -1,28 +1,33 @@
 # -*- coding: utf-8 -*-
 
-import requests, bs4, json, time
+import requests, bs4, json, time, csv, io
 
 import winsound
-frequency = 1000  # Set Frequency To 2500 Hertz
-duration = 1000  # Set Duration To 1000 ms == 1 second
+frequency = 500  # Set Frequency To 2500 Hertz
+duration = 500  # Set Duration To 1000 ms == 1 second
 
-
+f = io.open('coinlist.csv', 'r', encoding='utf-8-sig')
+rdr = csv.reader(f)
+coinlist=[]
+for line in rdr:
+    coinlist.append(line[0])
+print coinlist
+f.close()
 
 
 while(1):
+
+
+
+    """
     resp = requests.get('https://bittrex.com/api/v1.1/public/getticker?market=BTC-ADA')
     resp.raise_for_status()
-
     resp.encoding = 'euc-kr'
     html = resp.text
-
     bs = bs4.BeautifulSoup(html, 'html.parser')
-
     dictio=json.loads(html)
-
     print dictio['success']
     if dictio['success']==True:
-        print '\a'
         winsound.Beep(frequency, duration)
-
     time.sleep(1)
+    """
