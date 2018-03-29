@@ -36,7 +36,7 @@ while(1):
             while(1):
                 winsound.Beep(frequency, duration)
                 parsed = urlparse.urlparse(coin)
-                print ('%s가 상장된 것을 감지한지 %d초가 경과하였습니다.')%(urlparse.parse_qs(parsed.query)['market'][0],(time.time()-start))
+                print ('%s 가 상장된 것을 감지한지 %d초가 경과하였습니다.')%(urlparse.parse_qs(parsed.query)['market'][0][4:],(time.time()-start))
 
 
 
