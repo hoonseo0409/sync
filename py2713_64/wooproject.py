@@ -1,19 +1,21 @@
 # -*- coding: utf-8 -*-
 
-import requests, bs4, json
-import ast
+import requests, bs4, json, time
 
-resp = requests.get('https://bittrex.com/api/v1.1/public/getticker?market=BTC-ADA')
-resp.raise_for_status()
 
-resp.encoding = 'euc-kr'
-html = resp.text
+while(1):
+    resp = requests.get('https://bittrex.com/api/v1.1/public/getticker?market=BTC-ADA')
+    resp.raise_for_status()
 
-bs = bs4.BeautifulSoup(html, 'html.parser')
-tags = bs.select('success')  # Top 뉴스
-#title = tags.getText()
-print ("HTML%s\n")%html
-#dict= ast.literal_eval(html)
-dictio=json.loads(html)
-#response_item = ast.literal_eval(json.dumps(html, ensure_ascii=False).encode('utf8'))
-print dictio['success']
+    resp.encoding = 'euc-kr'
+    html = resp.text
+
+    bs = bs4.BeautifulSoup(html, 'html.parser')
+
+    dictio=json.loads(html)
+
+    print dictio['success']
+    if dictio['success']==False:
+        print "\a"
+    print "\a"
+    time.sleep(1)
