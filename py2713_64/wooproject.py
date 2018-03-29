@@ -2,6 +2,12 @@
 
 import requests, bs4, json, time
 
+import winsound
+frequency = 1000  # Set Frequency To 2500 Hertz
+duration = 1000  # Set Duration To 1000 ms == 1 second
+
+
+
 
 while(1):
     resp = requests.get('https://bittrex.com/api/v1.1/public/getticker?market=BTC-ADA')
@@ -15,7 +21,8 @@ while(1):
     dictio=json.loads(html)
 
     print dictio['success']
-    if dictio['success']==False:
-        print "\a"
-    print "\a"
+    if dictio['success']==True:
+        print '\a'
+        winsound.Beep(frequency, duration)
+
     time.sleep(1)
