@@ -24,9 +24,7 @@ while(1):
     i=0
     for coin in coinlist:
         resp=requests.get(coin)
-        #test = self.request.get('market', default = '*', type=str)
-        parsed = urlparse.urlparse(coin)
-        print urlparse.parse_qs(parsed.query)['market'][0]
+
         resp.raise_for_status()
         resp.encoding = 'euc-kr'
         html = resp.text
@@ -37,6 +35,8 @@ while(1):
             start=time.time()
             while(1):
                 winsound.Beep(frequency, duration)
-                print('%d초 시간이 지났습니다.')%(time.time()-start)
+                parsed = urlparse.urlparse(coin)
+                print ('%s가 상장된 것을 감지한지 %d초가 경과하였습니다.')%(urlparse.parse_qs(parsed.query)['market'][0],(time.time()-start))
+
 
 
