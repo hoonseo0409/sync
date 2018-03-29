@@ -16,18 +16,18 @@ f.close()
 
 
 while(1):
+    i=0
+    for coin in coinlist:
+        #resp = requests.get('https://bittrex.com/api/v1.1/public/getticker?market=BTC-ADA')
+        resp=requests.get(coin)
+        resp.raise_for_status()
+        resp.encoding = 'euc-kr'
+        html = resp.text
+        #bs = bs4.BeautifulSoup(html, 'html.parser')
+        dictio=json.loads(html)
+        print i
+        i=i+1
+        print dictio['success']
+        if dictio['success']==True:
+            winsound.Beep(frequency, duration)
 
-
-
-    """
-    resp = requests.get('https://bittrex.com/api/v1.1/public/getticker?market=BTC-ADA')
-    resp.raise_for_status()
-    resp.encoding = 'euc-kr'
-    html = resp.text
-    bs = bs4.BeautifulSoup(html, 'html.parser')
-    dictio=json.loads(html)
-    print dictio['success']
-    if dictio['success']==True:
-        winsound.Beep(frequency, duration)
-    time.sleep(1)
-    """
