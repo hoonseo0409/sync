@@ -1,4 +1,4 @@
-"""
+
 
 import tensorflow as tf
 import numpy as np
@@ -54,10 +54,10 @@ with tf.Session() as session:
 import os
 os._exit(00)
 
-"""
+
 
 #os._exit(00) 호출에 의해 아래 코드가 실행되지 않으므로, 주석처리하였습니다. 만약 위의 코드의 실행을 보고 싶다면 주석 처리를 해제하면 됩니다만 그러면 아래 코드는 실행되지 않습니다.
-
+"""
 import tensorflow.contrib.eager as tfe
 tfe.enable_eager_execution()
 import tensorflow as tf
@@ -87,3 +87,5 @@ while not tf.equal(a, 1):
   else:
     a = 3 * a + 1
   print(a)
+  
+  """
