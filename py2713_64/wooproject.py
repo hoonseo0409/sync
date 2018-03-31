@@ -2,6 +2,7 @@
 
 import requests, bs4, json, time, csv, io, time, urlparse, pygame
 
+
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -15,7 +16,7 @@ duration = 2000  # Set Duration To 1000 ms == 1 second
 
 
 
-f = io.open('upbit_url2.csv', 'r', encoding='utf-8-sig')
+f = io.open('upbit_url.csv', 'r', encoding='utf-8-sig')
 rdr = csv.reader(f)
 
 coinlist=[]
@@ -32,12 +33,6 @@ bang=pygame.mixer.Sound("Alarm05.wav")
 
 test=['UPBIT', 'KRW']
 round=0
-
-while(1):
-    resp = requests.get(coinlist[0])
-    print coinlist[0]
-    print resp.text
-    print '-----------------------------------------------------------------'
 
 
 
@@ -58,7 +53,10 @@ while(1):
             for name, thattime in find_dict.items():
                 print ('{} 의 상장을 탐지한지 {}초 경과되었습니다.'.format(name, time.time()-thattime))
 
-        resp=requests.get(coin)
+        headers = {'User-Agent': 'firefox'}
+
+        #time.sleep(0.2)
+        resp=requests.get(coin, headers=headers)
 
         #resp.raise_for_status()
         #resp.encoding = 'euc-kr'
@@ -67,10 +65,6 @@ while(1):
         html = resp.text
 
 
-        print coin
-        print html
-
-        print '----------------------------------------------------------'
 
         for elem in test:
             if elem in html:
