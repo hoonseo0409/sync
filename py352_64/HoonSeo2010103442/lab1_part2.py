@@ -75,6 +75,8 @@ def RNN(input_vec, weights, biases):
     # All that's left is to return recurrent_net (the RNN output) and prediction (the softmax output)
     return recurrent_net, prediction
 
+
+
 logits, prediction = RNN(input_vec, weights, biases)
 
 # LOSS OPERATION:
@@ -117,6 +119,8 @@ sess.run(init)
 
 # 3) Train!
 display_step = 1  # how often to display progress
+
+#with tf.device('/gpu:0'):
 for step in range(training_steps):
     # GET BATCH
     # Add the line to get training data batch (see util.get_batch or whatever for args) FIX THIS !
