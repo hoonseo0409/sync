@@ -16,11 +16,13 @@ print(encoded_songs[0].shape)
 ## Neural Network Parameters
 input_size       = encoded_songs[0].shape[1]   # The number of possible MIDI Notes
 output_size      = input_size                  # Same as input size
-hidden_size      = 128                         # Number of neurons in hidden layer
+hidden_size      = 200                        # Number of neurons in hidden layer
 
 learning_rate    = 0.001 # Learning rate of the model
-training_steps   = 200  # Number of batches during training
-batch_size       = 256    # Number of songs per batch
+#training_steps   = 200  # Number of batches during training
+training_steps   = 1500
+batch_size       = 256   # Number of songs per batch
+#timesteps        = 64    # Length of song snippet -- this is what is fed into the model
 timesteps        = 64    # Length of song snippet -- this is what is fed into the model
 
 assert timesteps < min_song_length
@@ -148,7 +150,8 @@ for step in range(training_steps):
 
 import matplotlib.pyplot as plt
 
-GEN_SEED_RANDOMLY = False  # Use a random snippet as a seed for generating the new song.
+GEN_SEED_RANDOMLY = True  # Use a random snippet as a seed for generating the new song.
+#GEN_SEED_RANDOMLY = False  # Use a random snippet as a seed for generating the new song.
 if GEN_SEED_RANDOMLY:
     ind = np.random.randint(NUM_SONGS)
 else:
@@ -174,7 +177,7 @@ for i in range(500):
     np.argmax(predict_probs[0])
     plt.plot(predict_probs[0])
     sampled_note = np.random.choice(range(output_size), p=predict_probs[0])  # TODO
-    # sampled_note = np.argmax(predict_probs[0])
+    #sampled_note = np.argmax(predict_probs[0])
     played_notes[sampled_note] = 1
     gen_song.append(played_notes)
 
