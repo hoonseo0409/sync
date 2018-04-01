@@ -12,23 +12,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="lab1_part2.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HoonSeo2010103442/lab1_part2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="72" column="23" lean-forward="false" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="p1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/haffor-2/p1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+            <state relative-caret-position="177">
+              <caret line="33" column="23" lean-forward="true" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
               <folding>
                 <element signature="e#2#14#0" expanded="true" />
               </folding>
@@ -36,35 +24,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DNN.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../movie_bigcon/DNN.py">
+      <file leaf-file-name="boston_standardized_wider.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/OneDrive - 경희대학교/DS공부/딥러닝jason교재/deep_learning_with_python/code/chapter_12/boston_standardized_wider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2714">
-              <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create_dataset.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HoonSeo2010103442/create_dataset.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+            <state relative-caret-position="184">
+              <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
               <folding>
-                <element signature="e#0#24#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="midi_manipulation.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/HoonSeo2010103442/midi_manipulation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#65#77#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,6 +61,7 @@
         <option value="$PROJECT_DIR$/HoonSeo2010103442/midi_manipulation.py" />
         <option value="$PROJECT_DIR$/HoonSeo2010103442/lab1_part2.py" />
         <option value="$PROJECT_DIR$/haffor-2/p1.py" />
+        <option value="$USER_HOME$/OneDrive - 경희대학교/DS공부/딥러닝jason교재/deep_learning_with_python/code/chapter_12/boston_standardized_wider.py" />
       </list>
     </option>
   </component>
@@ -158,24 +125,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="py352_64" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="wooproject" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -225,6 +174,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="py352_64" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/haffor-2/p1.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="boston_standardized_wider" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/OneDrive - 경희대학교/DS공부/딥러닝jason교재/deep_learning_with_python/code/chapter_12" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="py352_64" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/OneDrive - 경희대학교/DS공부/딥러닝jason교재/deep_learning_with_python/code/chapter_12/boston_standardized_wider.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -296,18 +263,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.lab1" />
-      <item index="1" class="java.lang.String" itemvalue="Python.test" />
-      <item index="2" class="java.lang.String" itemvalue="Python.wooproject" />
-      <item index="3" class="java.lang.String" itemvalue="Python.lab1_part2" />
-      <item index="4" class="java.lang.String" itemvalue="Python.p1" />
+      <item index="1" class="java.lang.String" itemvalue="Python.wooproject" />
+      <item index="2" class="java.lang.String" itemvalue="Python.lab1_part2" />
+      <item index="3" class="java.lang.String" itemvalue="Python.p1" />
+      <item index="4" class="java.lang.String" itemvalue="Python.boston_standardized_wider" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.p1" />
-        <item index="1" class="java.lang.String" itemvalue="Python.lab1_part2" />
-        <item index="2" class="java.lang.String" itemvalue="Python.lab1" />
-        <item index="3" class="java.lang.String" itemvalue="Python.wooproject" />
-        <item index="4" class="java.lang.String" itemvalue="Python.test" />
+        <item index="1" class="java.lang.String" itemvalue="Python.boston_standardized_wider" />
+        <item index="2" class="java.lang.String" itemvalue="Python.lab1_part2" />
+        <item index="3" class="java.lang.String" itemvalue="Python.lab1" />
+        <item index="4" class="java.lang.String" itemvalue="Python.wooproject" />
       </list>
     </recent_temporary>
   </component>
@@ -605,10 +572,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/OneDrive - 경희대학교/DS공부/딥러닝jason교재/deep_learning_with_python/code/chapter_12/boston_standardized_wider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+          <folding>
+            <element signature="e#65#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/haffor-2/p1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="26" column="21" lean-forward="false" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+        <state relative-caret-position="177">
+          <caret line="33" column="23" lean-forward="true" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
           <folding>
             <element signature="e#2#14#0" expanded="true" />
           </folding>

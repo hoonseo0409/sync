@@ -24,7 +24,7 @@ print (len(Y))
 def wider_model():
     # create model
     model = Sequential()
-    model.add(Dense(3, input_dim=3, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(20, input_dim=3, kernel_initializer='normal', activation='relu'))
     model.add(Dense(1, kernel_initializer='normal'))
     # Compile model
     model.compile(loss='mean_squared_error', optimizer='adam')
@@ -40,4 +40,5 @@ verbose=0)))
 pipeline = Pipeline(estimators)
 kfold = KFold(n_splits=10, random_state=seed)
 results = cross_val_score(pipeline, X, Y, cv=kfold)
+print (results)
 print("Wider: %.2f (%.2f) MSE" % (results.mean(), results.std()))
