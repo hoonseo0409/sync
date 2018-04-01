@@ -65,7 +65,9 @@ def RNN(input_vec, weights, biases):
     # Now, we want to get the outputs and states from the LSTM cell.
     # We rnn's static_rnn function, as described here:
     #  https://www.tensorflow.org/api_docs/python/tf/nn/static_rnn
-    outputs, states = rnn.stack_bidirectional_dynamic_rnn(lstm_cell, input_vec, dtype=tf.float32)
+
+    #outputs, states = rnn.static_rnn(lstm_cell, input_vec, dtype=tf.float32)
+    outputs, states = tf.nn.dynamic_rnn(lstm_cell, input_vec, dtype=tf.float32)
 
     # Next, let's compute the hidden layer's transformation of the final output of the LSTM.
     # We can think of this as the output of our RNN, or as the activations of the final layer.
