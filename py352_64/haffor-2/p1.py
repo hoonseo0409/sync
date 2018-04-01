@@ -11,7 +11,6 @@ from keras.wrappers.scikit_learn import KerasRegressor
 dataframe = read_csv('P1regression.csv',  header=None)
 dataset = dataframe.values
 
-# split into input (X) and output (Y) variables
 
 X = dataset[:,0:3]
 print(len(X[0]))
@@ -30,7 +29,7 @@ model.fit(x=X,y=Y,epochs=20000,batch_size=2000,validation_split=0.2)
 
 
 pred=model.predict(x=X, batch_size=1000)
-i=0
+
 print (len(pred))
 print (len(Y))
 for i in range(1000):
