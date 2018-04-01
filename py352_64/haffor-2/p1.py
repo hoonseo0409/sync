@@ -10,7 +10,7 @@ dataset = numpy.loadtxt("P1regression.csv", delimiter=",")
 # split into input (X) and output (Y) variables
 X = dataset[:,0:3]
 Y = dataset[:,3]
-# create model
+# create model 
 model = Sequential()
 model.add(Dense(12, input_dim=3, activation='relu'))
 model.add(Dense(8, activation='relu'))
