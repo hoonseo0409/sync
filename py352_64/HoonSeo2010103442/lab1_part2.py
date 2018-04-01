@@ -57,6 +57,11 @@ def RNN(input_vec, weights, biases):
     Think about the dimensionality of the output state -- how many hidden states will the LSTM cell have?'''
     lstm_cell = rnn.BasicLSTMCell(hidden_size)  # TODO
 
+    lstm_cell = tf.nn.rnn_cell.DropoutWrapper(lstm_cell, output_keep_prob=0.7)
+    #lstm_dropout = tf.contrib.rnn.DropoutWrapper(lstm_cell, input_keep_prob=0.8, output_keep_prob=0.8)
+    #lstm_layers = tf.contrib.rnn.MultiRNNCell([lstm_dropout] * 2)
+    
+
     # Now, we want to get the outputs and states from the LSTM cell.
     # We rnn's static_rnn function, as described here:
     #  https://www.tensorflow.org/api_docs/python/tf/nn/static_rnn
@@ -176,8 +181,8 @@ for i in range(500):
     print
     np.argmax(predict_probs[0])
     plt.plot(predict_probs[0])
-    sampled_note = np.random.choice(range(output_size), p=predict_probs[0])  # TODO
-    #sampled_note = np.argmax(predict_probs[0])
+    #sampled_note = np.random.choice(range(output_size), p=predict_probs[0])  # TODO
+    sampled_note = np.argmax(predict_probs[0])
     played_notes[sampled_note] = 1
     gen_song.append(played_notes)
 
