@@ -60,14 +60,14 @@ def RNN(input_vec, weights, biases):
     lstm_cell = tf.nn.rnn_cell.DropoutWrapper(lstm_cell, output_keep_prob=0.7)
     #lstm_dropout = tf.contrib.rnn.DropoutWrapper(lstm_cell, input_keep_prob=0.8, output_keep_prob=0.8)
     #lstm_layers = tf.contrib.rnn.MultiRNNCell([lstm_dropout] * 2)
-    lstm_cell = tf.contrib.rnn.MultiRNNCell([lstm_cell] * 2)
+    #lstm_cell = tf.contrib.rnn.MultiRNNCell([lstm_cell] * 2)
 
     # Now, we want to get the outputs and states from the LSTM cell.
     # We rnn's static_rnn function, as described here:
     #  https://www.tensorflow.org/api_docs/python/tf/nn/static_rnn
 
-    #outputs, states = rnn.static_rnn(lstm_cell, input_vec, dtype=tf.float32)
-    outputs, states = tf.nn.dynamic_rnn(lstm_cell, input_vec, dtype=tf.float32)
+    outputs, states = rnn.static_rnn(lstm_cell, input_vec, dtype=tf.float32)
+    #outputs, states = tf.nn.dynamic_rnn(lstm_cell, input_vec, dtype=tf.float32)
 
     # Next, let's compute the hidden layer's transformation of the final output of the LSTM.
     # We can think of this as the output of our RNN, or as the activations of the final layer.
