@@ -1,48 +1,49 @@
-# 0. 사용할 패키지 불러오기
-import numpy as np
+# Regression Example With Boston Dataset: Baseline
+import numpy
+from pandas import read_csv
 from keras.models import Sequential
 from keras.layers import Dense
-import random
-import matplotlib.pyplot as plt
+from keras.wrappers.scikit_learn import KerasRegressor
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import KFold
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import Pipeline
 import pandas as pd
 
-# 1. 데이터셋 생성하기
-x_train = np.random.random((1000, 1))
-y_train = x_train * 2 + np.random.random((1000, 1)) / 3.0
-x_test = np.random.random((100, 1))
-y_test = x_test * 2 + np.random.random((100, 1)) / 3.0
-
-df=pd.read_csv('P1regression.csv')
-#df.columns = ['A', 'B', 'C', 'D']
-print (df[0:4])
-x_train=df[0:3]
-y_train=df[3]
-
 """
-# 2. 모델 구성하기
-model = Sequential()
-model.add(Dense(64, input_dim=1, activation='relu'))
-model.add(Dense(64, activation='relu'))
-model.add(Dense(1))
-
-# 3. 모델 학습과정 설정하기
-model.compile(optimizer='rmsprop', loss='mse')
-
-# 4. 모델 학습시키기
-hist = model.fit(x_train, y_train, epochs=50, batch_size=64)
-
-# 5. 학습과정 살펴보기
-#%matplotlib inline
-
-
-plt.plot(hist.history['loss'])
-plt.ylim(0.0, 1.5)
-plt.ylabel('loss')
-plt.xlabel('epoch')
-plt.legend(['train'], loc='upper left')
-plt.show()
-
-# 6. 모델 평가하기
-loss = model.evaluate(x_test, y_test, batch_size=32)
-print('loss : ' + str(loss))
+# load dataset
+#dataset = read_csv("P1regression.csv", delim_whitespace=True, header=None)
+dataset = pd.read_csv('P1regression.csv')
+#dataset = dataframe.values
+# split into input (X) and output (Y) variables
+print (dataset)
+X = dataset[0:3]
+Y = dataset[3]
+# define base model
 """
+
+dataframe = read_csv('P1regression.csv',  header=None)
+dataset = dataframe.values
+# split into input (X) and output (Y) variables
+
+X = dataset[:,0:3]
+print(X)
+
+Y = dataset[:,3]
+print (Y)
+def baseline_model():
+    # create model
+    model = Sequential()
+    model.add(Dense(13, input_dim=3, kernel_initializer='normal', activation='relu'))
+    model.add(Dense(1, kernel_initializer='normal'))
+    # Compile model
+    model.compile(loss='mean_squared_error', optimizer='adam')
+    return model
+# fix random seed for reproducibility
+seed = 7
+numpy.random.seed(seed)
+# evaluate model
+estimator = KerasRegressor(build_fn=baseline_model, epochs=100, batch_size=5, verbose=0)
+kfold = KFold(n_splits=10, random_state=seed)
+results = cross_val_score(estimator, X, Y, cv=kfold)
+print("Baseline: %.2f (%.2f) MSE" % (results.mean(), results.std()))
