@@ -34,7 +34,7 @@ bang=pygame.mixer.Sound("Alarm05.wav")
 test=['UPBIT', 'KRW']
 round=0
 
-
+listed_coin_lst=[]
 
 while(1):
     
