@@ -16,7 +16,7 @@ duration = 2000  # Set Duration To 1000 ms == 1 second
 
 
 
-f = io.open('upbit_url.csv', 'r', encoding='utf-8-sig')
+f = io.open('sj.csv', 'r', encoding='utf-8-sig')
 rdr = csv.reader(f)
 
 coinlist=[]
@@ -31,50 +31,47 @@ tick=1
 pygame.mixer.init()
 bang=pygame.mixer.Sound("Alarm05.wav")
 
-test=['UPBIT', 'KRW']
+#test=['UPBIT', 'KRW']
 round=0
 
-
+present=time.time()
 
 while(1):
     
-    
+    """
     print len(coinlist)
 
     print ('{} rounds was done'.format(round))
     round=round+1
+    """
 
+
+
+    headers = {'User-Agent': 'firefox'}
+
+    time.sleep(1.)
+    resp=requests.get('https://bittrex.com/api/v1.1/public/getcurrencies', headers=headers)
+
+    #resp.raise_for_status()
+    #resp.encoding = 'euc-kr'
+    resp.encoding = 'utf-8-sig'
+
+    html = resp.text
+    print html
+    print '----------------------------------------------------'
 
     for coin in coinlist:
-        tick=tick+1
+        if coin in html:
+            alarm = 1
+            #parsed = urlparse.urlparse(coin)
+            find_dict[coin] = time.time()
+            coinlist.remove(coin)
+            break
 
-        if alarm==1 and tick%100==0:
-            bang.play()
-            for name, thattime in find_dict.items():
-                print ('{} 의 상장을 탐지한지 {}초 경과되었습니다.'.format(name, time.time()-thattime))
-
-        headers = {'User-Agent': 'firefox'}
-
-        #time.sleep(0.2)
-        resp=requests.get(coin, headers=headers)
-
-        #resp.raise_for_status()
-        #resp.encoding = 'euc-kr'
-        resp.encoding = 'utf-8-sig'
-
-        html = resp.text
-
-
-
-        for elem in test:
-            if elem in html:
-                alarm = 1
-                parsed = urlparse.urlparse(coin)
-                find_dict[urlparse.parse_qs(parsed.query)['code'][0][15:]] = time.time()
-                coinlist.remove(coin)
-                break
-
-
+    if alarm == 1 and int(present - time.time()) % 5 == 0:
+        bang.play()
+        for name, thattime in find_dict.items():
+            print ('{} 의 상장을 탐지한지 {}초 경과되었습니다.'.format(name, time.time() - thattime))
 
         #dictio=json.loads(html)
 
