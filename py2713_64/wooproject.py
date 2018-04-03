@@ -21,7 +21,7 @@ rdr = csv.reader(f)
 
 coinlist=[]
 for line in rdr:
-    coinlist.append(line[0])
+    coinlist.append('\"'+line[0]+'\"')
 print (coinlist)
 f.close()
 
@@ -37,7 +37,9 @@ round=0
 present=time.time()
 
 while(1):
-    
+
+    print '{} 번 페이지를 요청하였습니다.'.format(round)
+    round=round+1
     """
     print len(coinlist)
 
@@ -57,8 +59,8 @@ while(1):
     resp.encoding = 'utf-8-sig'
 
     html = resp.text
-    print html
-    print '----------------------------------------------------'
+    #print html
+    #print '----------------------------------------------------'
 
     for coin in coinlist:
         if coin in html:
@@ -68,10 +70,10 @@ while(1):
             coinlist.remove(coin)
             break
 
-    if alarm == 1 and int(present - time.time()) % 5 == 0:
+    if alarm == 1 and int(present - time.time()) % 3 == 0:
         bang.play()
         for name, thattime in find_dict.items():
-            print ('{} 의 상장을 탐지한지 {}초 경과되었습니다.'.format(name, time.time() - thattime))
+            print ('{} 의 상장을 탐지한지 {}초 경과되었습니다.'.format(name, int(time.time() - thattime)))
 
         #dictio=json.loads(html)
 
