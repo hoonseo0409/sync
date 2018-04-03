@@ -52,16 +52,17 @@ while(1):
     headers = {'User-Agent': 'firefox'}
 
     time.sleep(1.)
-    resp=requests.get('https://bittrex.com/api/v1.1/public/getcurrencies', headers=headers)
+    resp=requests.get('https://bittrex.com/home/markets', headers=headers)
 
     #resp.raise_for_status()
     #resp.encoding = 'euc-kr'
     resp.encoding = 'utf-8-sig'
 
     html = resp.text
-    #print html
-    #print '----------------------------------------------------'
+    print html
+    print '----------------------------------------------------'
 
+    
     for coin in coinlist:
         if coin in html:
             alarm = 1
