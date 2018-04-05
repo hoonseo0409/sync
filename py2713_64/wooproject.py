@@ -13,7 +13,7 @@ duration = 2000  # Set Duration To 1000 ms == 1 second
 
 
 
-f = io.open('coinlist.csv', 'r', encoding='utf-8-sig')
+f = io.open('sj.csv', 'r', encoding='utf-8-sig')
 rdr = csv.reader(f)
 coinlist=[]
 for line in rdr:
@@ -26,9 +26,49 @@ alarm=0
 tick=1
 pygame.mixer.init()
 bang=pygame.mixer.Sound("Alarm05.wav")
+listed_coin_lst=[]
+headers = {'User-Agent': 'firefox'}
+round=0
+present=time.time()
 
 while(1):
+    print '{} 번 페이지를 요청하였습니다.'.format(round)
+    resp=requests.get('http://bithumb.cafe/notice', headers=headers)
+    resp.encoding = 'utf-8-sig'
+    html = resp.text
 
+    print html
+    time.sleep(15.)
+
+    dictio = json.loads(html)
+
+    print dictio
+    """
+    result=dictio['result']
+    
+    
+    for listed_coin in result:
+        listed_coin_lst.append(listed_coin['Currency'])
+    #print listed_coin_lst
+
+    for coin in coinlist:
+        if coin in listed_coin_lst:
+            alarm = 1
+            # parsed = urlparse.urlparse(coin)
+            find_dict[coin] = time.time()
+            coinlist.remove(coin)
+
+    if alarm == 1 and int(present - time.time()) % 3 == 0:
+        bang.play()
+        for name, thattime in find_dict.items():
+            print ('{} 의 상장을 탐지한지 {}초 경과되었습니다.'.format(name, int(time.time() - thattime)))
+
+    time.sleep(1.)
+    round=round +1
+    
+    """
+
+    """
     for coin in coinlist:
         tick=tick+1
 
@@ -52,16 +92,5 @@ while(1):
             parsed = urlparse.urlparse(coin)
             find_dict[urlparse.parse_qs(parsed.query)['market'][0][4:]]=time.time()
             coinlist.remove(coin)
+    """
 
-
-        """
-        if dictio['success']==False:
-            start=time.time()
-            while(1):
-                pygame.mixer.init()
-                bang=pygame.mixer.Sound("Alarm05.wav")
-                parsed = urlparse.urlparse(coin)
-                print ('%s 가 상장된 것을 감지한지 %d초가 경과하였습니다.')%(urlparse.parse_qs(parsed.query)['market'][0][4:],(time.time()-start))
-                bang.play()
-                time.sleep(2)
-        """
