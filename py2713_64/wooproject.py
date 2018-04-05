@@ -3,6 +3,9 @@
 import requests, bs4, json, time, csv, io, time, urlparse, pygame
 
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 #from flask import request
 
@@ -18,7 +21,7 @@ rdr = csv.reader(f)
 coinlist=[]
 for line in rdr:
     coinlist.append(line[0])
-print coinlist
+print (coinlist)
 f.close()
 
 find_dict={}
