@@ -6,7 +6,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 import pygame
 import time
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 """
 browser = webdriver.Chrome("C:\chromedriver.exe")
@@ -42,15 +44,18 @@ while(1):
             print ('{} 의 상장을 탐지한지 {}초 경과되었습니다.'.format(name, int(time.time() - thattime)))
 
 
-    if now != before:
+    if now != before and ('상장' in now):
         alarm=1
         find_dict[now] = time.time()
         before=now
+    elif now != before:
+        before = now
 
     round = round +1
     time.sleep(3.)
 
-    print now
+    if '상장' in now:
+        print now
 
 
 
