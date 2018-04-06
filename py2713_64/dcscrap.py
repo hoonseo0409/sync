@@ -1,7 +1,6 @@
-from selenium import webdriver
+import scrapy
 import time
-browser = webdriver.Chrome("C:\chromedriver.exe")
-browser.get("https://bittrex.com/home/markets")
-time.sleep(30.)
-browser.quit()
-exit()
+
+headers = {'User-Agent': 'firefox'}
+request = scrapy.Request('http://bithumb.cafe/notice', headers=headers, encoding='utf-8-sig')
+print response.xpath()
