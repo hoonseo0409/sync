@@ -1,63 +1,99 @@
 # -*- coding: utf-8 -*-
 
+import csv
+import subprocess
+from telegram.ext import Updater, MessageHandler, Filters, CommandHandler
+import settings
+import threading
+import sys
+import time
 from selenium import webdriver
 from bs4 import BeautifulSoup
 from selenium.webdriver.support.ui import WebDriverWait
+import random
+import datetime
+from binance.client import Client
+import telegram
 
-import pygame
-import time
-import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-"""
-browser = webdriver.Chrome("C:\chromedriver.exe")
-browser.get("https://bittrex.com/home/markets")
-time.sleep(30.)
-browser.quit()
-exit()
-"""
+trade_number=0
+trade_history={}
 
-pygame.mixer.init()
-bang=pygame.mixer.Sound("Alarm05.wav")
-round=0
-#present=time.time()
-alarm=0
-find_dict={}
+client = Client(settings.APIKEY, settings.SECRET)
+kill=0
 
-driver = webdriver.Chrome("C:\chromedriver.exe")
-driver.get("http://bithumb.cafe/notice")
-#html = driver.page_source
-#soup = BeautifulSoup(html, 'html.parser')
-before = driver.find_element_by_xpath('//*[@id="primary-fullwidth"]/article[1]/h3/a').text
+marketpt = 0.01 #투자 비중의 기본값
+waitforselling = 1 # 매수후 절반을 매도하기까지 기다리는 시간 단위는 초
+# limitpt=0.001
+
+my_token = settings.my_token
+bot = telegram.Bot(token=my_token)  # bot을 선언합니다.
+chat_id = settings.chat_id  # 각자 id 기입
 
 
-while(1):
-    print '{} 번 페이지를 요청하였습니다.'.format(round)
-
+def findin_notice_bithumb():
+    epoch = 1
+    driver = webdriver.Chrome("C:\chromedriver.exe")
     driver.get("http://bithumb.cafe/notice")
-    now = driver.find_element_by_xpath('//*[@id="primary-fullwidth"]/article[1]/h3/a').text
+    driver.implicitly_wait(60)
+    before = driver.find_element_by_xpath('//*[@id="primary-fullwidth"]/article[1]/h3/a').text
 
-    if alarm == 1:
-        bang.play()
-        for name, thattime in find_dict.items():
-            print ('{} 의 상장을 탐지한지 {}초 경과되었습니다.'.format(name, int(time.time() - thattime)))
-
-
-    if now != before and ('상장' in now):
-        alarm=1
-        find_dict[now] = time.time()
-        before=now
-    elif now != before:
-        before = now
-
-    round = round +1
-    time.sleep(3.)
-
-    if '상장' in now:
-        print now
+    while (1):
+        try:
+            if epoch%10 == 1:
+                print '빗썸 공지사항에서 {} 번 페이지를 요청하였습니다.'.format(epoch)
+            driver.get("http://bithumb.cafe/notice")
+            driver.implicitly_wait(60)
+            now = driver.find_element_by_xpath('//*[@id="primary-fullwidth"]/article[1]/h3/a').text
 
 
+            if now == before or ('상장' not in now):
+                may_lst=[]
+                avoid = ['PRO', 'API', 'BTC', 'USD', 'KRW', 'KST', 'MTS', 'FAQ', 'QNA', 'SMS']
+
+                upper=''
+                for i in now:
+                    if i.isupper():
+                        length = length + 1
+                        upper = upper + i
+                    elif len(upper)>= 3 and (upper not in avoid):
+                        may_lst.append(upper)
+                        length = 0
+                        upper = ''
+                    else:
+                        length = 0
+                        upper = ''
+
+                driver.find_element_by_xpath('//*[@id="primary-fullwidth"]/article[1]/h3/a').click()
+                driver.implicitly_wait(60)
+                print(driver.find_element_by_xpath('//*[@id="primary-left"]/article/div').text)
+
+                for i in driver.find_element_by_xpath('//*[@id="primary-left"]/article/div').text:
+                    if i.isupper():
+                        length = length + 1
+                        upper = upper + i
+                    elif len(upper)>= 3 and (upper not in avoid):
+                        may_lst.append(upper)
+                        length = 0
+                        upper = ''
+                    else:
+                        length = 0
+                        upper = ''
+
+                may_lst = list(set(may_lst))
+
+                j=0
+                for j in range (len(may_lst)):
+                    may_lst[j]=may_lst[j].encode('utf-8')
+                print may_lst
+
+            before=now
+            epoch = epoch + 1
+            time.sleep(random.randrange(3, 20))
+        except Exception as ex:
+            time.sleep(random.randrange(3, 20))
 
 
-#print driver.page_source
+findin_notice_bithumb()
