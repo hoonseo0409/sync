@@ -85,8 +85,11 @@ print (interGroupCorr)
 intraGroupCorr = 0
 for i in range(10):
     for j in range(200):
-        for k in range(200):
-            intraGroupCorr+=np.correlate(divided[i][j], divided[i][k])
+        for k in range(j+1, 200):
+            intraGroupCorr+=np.correlate(divided[i][j], divided[i][k])*2
+
+#대각선에서 corr은 1일테니 대각선 빼먹은것들 더해줌
+intraGroupCorr+=200*10
 
 print (intraGroupCorr)
 
