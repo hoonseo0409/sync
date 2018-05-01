@@ -1,3 +1,6 @@
+#   k-means classification을 응용하였는데, 기존의 k-means classfication에서 중심점과의 거리로 분류한 것과 달리 intra group correlation - average of inter group correlations을 기준으로 분려하였습니다.
+#   또 기존 k-means clssification과 달리 중심점을 모든 데이터의 분류가 끝난 뒤에 업데이트 하는 것이 아니라, 매 데이터가 어느 중심점에 속할지 결정되자마자 업데이트 하도록 하였습니다.
+
 import numpy as np
 import random
 import csv
@@ -5,20 +8,8 @@ import csv
 
 stocks=np.genfromtxt('54_hfc_20170614_comp.csv', delimiter=',')
 stocks = stocks.transpose()
-# stocks = stocks.tolist()
-#
-# for i in range(2000):
-#     # stocks[i] = stocks[i].tolist()
-#     stocks[i].append(i) #추후에 shuffle시 index구분을 위해
-#
-# stocks = np.asarray(stocks)
-# print (stocks.shape)
-# print (stocks[1][-1])
 
 print (stocks.shape)
-
-
-LR=1/2000.
 
 divided=[]
 for i in range(10):
@@ -108,20 +99,17 @@ print (num_means)
 before = intraGroupCorr/interGroupCorr
 best=before
 
+argStocks=[]
+for i in range(2000):
+    argStocks.append(i)
 
 iteration=1
 stopLoss=0
 notEnough=True
 while(notEnough):
-    argStocks=random.sample(range(2000), 2000)
-    print (argStocks)
+    random.shuffle(argStocks)
+    # print (argStocks)
     myRange=[]
-    # for i in range(startPoint, 2000):
-    #     myRange.append(i)
-    # for i in range(0, startPoint):
-    #     myRange.append(i)
-    # np.random.shuffle(stocks)   #이렇게 해주지 않으면 stocks의 앞쪽 데이터들에만 민감하게 학습됩니다.
-    print (stocks.shape)
 
     print ('----------------------------------------------------')
     divided = []
@@ -160,7 +148,7 @@ while(notEnough):
                 else:
                     otherAvg+=tmp_corr[k]
             #최대 점수 찾기
-            if (setnum not in already) and (maxscore<my_corr-otherAvg/9.):  #200개씩 균등하게 들어가야 하니까, 앞에 벡터가 먼저 들어간 집합에는 들어가지 않는다.
+            if (setnum not in already) and (maxscore<my_corr-otherAvg/9.):  #200개씩 균등하게 들어가야 하니까, 앞의 벡터가 먼저 들어간 집합에는 들어가지 않는다.
                 maxscore=my_corr-otherAvg/9.
                 arg=setnum  #지금까지의 score보다 좋았으면 그 argument를 기록
 
@@ -180,7 +168,7 @@ while(notEnough):
     #결과들 출력
 
     # print(means)
-    print (argDivided)
+    # print (argDivided)
     interGroupCorr = 0
     interGroupCorrArr = np.corrcoef(means)
     for i in range(10):
@@ -209,7 +197,7 @@ while(notEnough):
             best_argDIvided=argDivided
         stopLoss=0
 
-    if stopLoss==6: # n번 연속 결과가 악화되면
+    if stopLoss==5: # n번 연속 결과가 악화되면
         # print (best_divided)
         # with open('result.csv', 'w', newline='') as myfile:
         #     wr = csv.writer(myfile)
